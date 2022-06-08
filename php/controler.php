@@ -35,17 +35,23 @@ $tipo = $_POST['tipo'];
         }
     }
 
-    if ($tipo == 'editarDato') {
+    if ($tipo == 'editarProducto') {
         
-        $datos = $_POST['datos'];
+        $idProducto = $_POST['idProducto'];
+        $nombreNuevoProdE = $_POST['nombreNuevoProdE'];
+        $referenciaNuevoProdE = $_POST['referenciaNuevoProdE'];
+        $precioNuevoProdE = $_POST['precioNuevoProdE'];
+        $pesoNuevoProdE = $_POST['pesoNuevoProdE'];
+        $categoríaNuevoProdE = $_POST['categoríaNuevoProdE'];
+        $stockNuevoProdE = $_POST['stockNuevoProdE'];
         
-        if ($datos == "")  {
+        if ($nombreNuevoProdE == "" || $referenciaNuevoProdE == "" || $precioNuevoProdE == "" || $pesoNuevoProdE == "" || $categoríaNuevoProdE == "" || $stockNuevoProdE == "")  {
             $html = 'info';
             echo $html;
         }else {
-            $editarDato=editarDato($datos);
+            $editarProd=editarProd($idProducto,$nombreNuevoProdE,$referenciaNuevoProdE,$precioNuevoProdE,$pesoNuevoProdE,$categoríaNuevoProdE,$stockNuevoProdE);
 
-            if ($editarDato === true) {
+            if ($editarProd === true) {
                 $html = 'success';
                 echo $html;
             }else {
@@ -56,13 +62,13 @@ $tipo = $_POST['tipo'];
 
     }
 
-    if ($tipo == 'eliminarDato') {
+    if ($tipo == 'eliminarProducto') {
         
         $idEliminar = $_POST['idEliminar'];
 
-        $eliminarDato=eliminarDato($idEliminar);
+        $eliminarProducto=eliminarProducto($idEliminar);
 
-        if ($eliminarDato === true) {
+        if ($eliminarProducto === true) {
             $html = 'success';
             echo $html;
         }else {

@@ -20,31 +20,30 @@ if($_SESSION['userID']){
         }
     }
 
-    // function editarDato($datos){
-    //     include 'conexion-bd.php';
+    // editar producto
+    function editarProd($idProducto,$nombreNuevoProdE,$referenciaNuevoProdE,$precioNuevoProdE,$pesoNuevoProdE,$categoríaNuevoProdE,$stockNuevoProdE){
+        include 'conexion-bd.php';
 
-    //     if ($datos == "") {
-    //         $editarDato = mysqli_query($conexion,"UPDATE tabla SET tabla_id = '$datos'");
-            
-    //         if ($editarDato) {
-    //             return true;
-    //         }else {
-    //             return false;
-    //         }
-    //     }
-    // }
-
-    // function eliminarDato($idEliminar){
-    //     include 'conexion-bd.php';
-
-    //     $eliminarDato = mysqli_query($conexion,"UPDATE tabla SET tabla_status = 0 WHERE tabla_id = '$idEliminar'");
+        $editarProducto = mysqli_query($conexion,"UPDATE productos SET prod_nombre = '$nombreNuevoProdE', prod_ref = '$referenciaNuevoProdE', prod_precio = $precioNuevoProdE, prod_peso = $pesoNuevoProdE, prod_cat = '$categoríaNuevoProdE', prod_stock = $stockNuevoProdE WHERE prod_id = '$idProducto'");
         
-    //     if ($eliminarDato) {
-    //         return true;
-    //     }else {
-    //         return false;
-    //     }
-    // }
+        if ($editarProducto) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    function eliminarProducto($idEliminar){
+        include 'conexion-bd.php';
+
+        $eliminarProd = mysqli_query($conexion,"UPDATE productos SET prod_status = 0 WHERE prod_id = '$idEliminar'");
+        
+        if ($eliminarProd) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 
 }else {
     header("location: index.php");

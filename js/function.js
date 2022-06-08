@@ -1,4 +1,4 @@
-// función que cambia el contenido principal de todas las pantallas recibiendo un string para saber que contendido llamar
+// Función que cambia el contenido principal de todas las pantallas recibiendo un string para saber que contendido llamar
 function contenido(ventana) {
     $('#contentPrincipal').html(``);
     if (ventana == 'welcome') {
@@ -25,7 +25,7 @@ function contenido(ventana) {
     }
 }
 
-// función que da configuraciones extra al cargar el contenido de la vista
+// Función que da configuraciones extra al cargar el contenido de la vista
 function configPage(page) {
     if (page == 'welcome') {
         $('#titlePage').html(`Bienvenido`);
@@ -40,7 +40,7 @@ function configPage(page) {
     }
 }
 
-// función que carga la barra de navegación central
+// Función que carga la barra de navegación central
 function contentNav(nav) {
     $('#contentNav').html(``);
     $.ajax({
@@ -53,7 +53,7 @@ function contentNav(nav) {
     });
 }
 
-// función que optiene el contenido de tablas dependiendo de su id
+// Función que optiene el contenido de tablas dependiendo de su id
 function tablas(tabla) {
     if (tabla == 'tblListaProductos') {
         $.ajax({
@@ -139,7 +139,7 @@ function iniciarSesion(usernameLoging,passLoging) {
     });
 }
 
-// función que cambia de formularios para iniciar sesion, recuperar contraseña
+// Función que cambia de formularios para iniciar sesion, recuperar contraseña
 function changeForm(form) {
     if (form == 'olvidoPass') {
         $('#box-sesion').addClass('dp-none');
@@ -150,7 +150,7 @@ function changeForm(form) {
     }
 }
 
-// función que inserta un nuevo Producto
+// Función que inserta un nuevo Producto
 function insertarNuevoProducto() {
 
     let tipo = "nuevoProducto";
@@ -242,78 +242,30 @@ function insertarNuevoProducto() {
     }
 }
 
-// función para editar por id y tipo de edición
+// Función para editar por id y tipo de edición
 function editar(id,tipo) {
     if (tipo == 'producto') {
         $.ajax({
             type: "POST",
-            url: "pages/editar.php",
+            url: "pages/extrapages/editar.php",
             data: "tipo=" + tipo + "&id=" + id,
             success: function(r) {
-
-                $('#editProducto').html(r);
-                
+                $('#editarProdBody').html(r);
+                abrirModal('editarProducto');
             }
         });
     }
 }
 
-// función para eliminar por id y tipo
+// Función para eliminar por id y tipo
 function eliminar(id,tipo) {
-    if (tipo == 'contacto') { 
-        sweetAlertType('eliminar','contactos',id);
-    }
-    if (tipo == 'lineaNegocio') {
-        sweetAlertType('eliminar','lineaNegocio',id);
-    }
     if (tipo == 'producto') {
         sweetAlertType('eliminar','productos',id);
     }
-    if (tipo == 'oportunidades') {
-        sweetAlertType('eliminar','oportunidades',id);
-    }
-    if (tipo == 'organizaciones') {
-        sweetAlertType('eliminar','organizaciones',id);
-    }
 }
 
-// función para eliminar por id y tipo
+// Función para eliminar por id y tipo
 function ConfirmEliminar(id,tipo) {
-    if (tipo == 'contactos') { 
-        type = 'eliminarContacto';
-        $.ajax({
-            type: "POST",
-            url: "php/controler.php",
-            data: "tipo=" + type + "&idEliminar=" + id,
-            success: function(r) {
-                if (r == 'success') {
-                    sweetAlertType('success','contactos');
-                }else if(r == 'error'){
-                    sweetAlertType('error','contactos');
-                }else if(r == 'info'){
-                    sweetAlertType('info','contactos');
-                }
-            }
-        });
-    }
-    if (tipo == 'lineaNegocio') {
-        
-        type = 'eliminarLineaNegocio';
-        $.ajax({
-            type: "POST",
-            url: "php/controler.php",
-            data: "tipo=" + type + "&idEliminar=" + id,
-            success: function(r) {
-                if (r == 'success') {
-                    sweetAlertType('success','productos');
-                }else if(r == 'error'){
-                    sweetAlertType('error','productos');
-                }else if(r == 'info'){
-                    sweetAlertType('info','productos');
-                }
-            }
-        });
-    }
     if (tipo == 'productos') {
         
         type = 'eliminarProducto';
@@ -323,78 +275,112 @@ function ConfirmEliminar(id,tipo) {
             data: "tipo=" + type + "&idEliminar=" + id,
             success: function(r) {
                 if (r == 'success') {
-                    sweetAlertType('success','productos');
+                    sweetAlertType('success','welcome');
                 }else if(r == 'error'){
-                    sweetAlertType('error','productos');
+                    sweetAlertType('error','welcome');
                 }else if(r == 'info'){
-                    sweetAlertType('info','productos');
-                }
-            }
-        });
-    }
-    if (tipo == 'oportunidades') {
-        
-        type = 'eliminarOportunidad';
-        $.ajax({
-            type: "POST",
-            url: "php/controler.php",
-            data: "tipo=" + type + "&idEliminar=" + id,
-            success: function(r) {
-                if (r == 'success') {
-                    sweetAlertType('success','oportunidades');
-                }else if(r == 'error'){
-                    sweetAlertType('error','oportunidades');
-                }else if(r == 'info'){
-                    sweetAlertType('info','oportunidades');
-                }
-            }
-        });
-    }
-    if (tipo == 'organizaciones') {
-        
-        type = 'eliminarOrganizacion';
-        $.ajax({
-            type: "POST",
-            url: "php/controler.php",
-            data: "tipo=" + type + "&idEliminar=" + id,
-            success: function(r) {
-                if (r == 'success') {
-                    sweetAlertType('success','organizaciones');
-                }else if(r == 'error'){
-                    sweetAlertType('error','organizaciones');
-                }else if(r == 'info'){
-                    sweetAlertType('info','organizaciones');
+                    sweetAlertType('info','welcome');
                 }
             }
         });
     }
 }
 
-// función para editar Productos
+// Función para editar Productos
 function editarProducto(id) {
     
     let tipo = "editarProducto";
-    let selectLineaNegocioProdE = $('#selectLineaNegocioProdE').val();
-    let nombreProductoE = $('#nombreProductoE').val();
 
-    $.ajax({
-        type: "POST",
-        url: "php/controler.php",
-        data: "tipo=" + tipo + "&idProducto=" + id + "&nombreProductoE=" + nombreProductoE + "&selectLineaNegocioProdE=" + selectLineaNegocioProdE,
-        success: function(r) {
-            if (r == 'success') {
-                sweetAlertType('success','productos');
-                cerrarModal('closemodalEditProducto');
-            }else if(r == 'error'){
-                sweetAlertType('error','productos');
-            }else if(r == 'info'){
-                sweetAlertType('info','productos');
+    let exprNumber = /^[a-zA-Z0-9.]+$/;
+
+    let nombreNuevoProdE = $('#nombreNuevoProdE').val();
+    let referenciaNuevoProdE = $('#referenciaNuevoProdE').val();
+    let precioNuevoProdE = $('#precioNuevoProdE').val();
+    let pesoNuevoProdE = $('#pesoNuevoProdE').val();
+    let categoríaNuevoProdE = $('#categoríaNuevoProdE').val();
+    let stockNuevoProdE = $('#stockNuevoProdE').val();
+
+
+    $('#nombreNuevoProdE','#referenciaNuevoProdE','#precioNuevoProdE','#pesoNuevoProdE','#categoríaNuevoProdE','#stockNuevoProdE').removeClass('bd-danger');
+    $('#spanNombreNuevoProdE','#spanReferenciaNuevoProdE','#spanPrecioNuevoProdE','#spanPesoNuevoProdE','#spanCategoríaNuevoProdE','#spanStockNuevoProdE').addClass('dp-none');
+
+
+    if(nombreNuevoProdE == ''){
+        $('#nombreNuevoProdE').addClass('bd-danger');
+        $('#spanNombreNuevoProdE').removeClass('dp-none');
+        return false;
+    }else{
+        $('#nombreNuevoProdE').removeClass('bd-danger');
+        $('#spanNombreNuevoProdE').addClass('dp-none');
+
+        if(referenciaNuevoProdE == ''){
+            $('#referenciaNuevoProdE').addClass('bd-danger');
+            $('#spanReferenciaNuevoProdE').removeClass('dp-none');
+            return false;
+        }else{
+            $('#referenciaNuevoProdE').removeClass('bd-danger');
+            $('#spanReferenciaNuevoProdE').addClass('dp-none');
+            
+            if(precioNuevoProdE == '' || !exprNumber.test(precioNuevoProdE)){
+                $('#precioNuevoProdE').addClass('bd-danger');
+                $('#spanPrecioNuevoProdE').removeClass('dp-none');
+                return false;
+            }else{
+                $('#precioNuevoProdE').removeClass('bd-danger');
+                $('#spanPrecioNuevoProdE').addClass('dp-none'); 
+                
+                if(pesoNuevoProdE == '' || !exprNumber.test(pesoNuevoProdE)){
+                    $('#pesoNuevoProdE').addClass('bd-danger');
+                    $('#spanPesoNuevoProdE').removeClass('dp-none');
+                    return false;
+                }else{
+                    $('#pesoNuevoProdE').removeClass('bd-danger');
+                    $('#spanPesoNuevoProdE').addClass('dp-none'); 
+
+                    if(categoríaNuevoProdE == ''){
+                        $('#categoríaNuevoProdE').addClass('bd-danger');
+                        $('#spanCategoríaNuevoProdE').removeClass('dp-none');
+                        return false;
+                    }else{
+                        $('#categoríaNuevoProdE').removeClass('bd-danger');
+                        $('#spanCategoríaNuevoProdE').addClass('dp-none');
+                        
+                        if(stockNuevoProdE == '' || !exprNumber.test(precioNuevoProdE)){
+                            $('#stockNuevoProdE').addClass('bd-danger');
+                            $('#spanStockNuevoProdE').removeClass('dp-none');
+                            return false;
+                        }else{
+                            $('#stockNuevoProdE').removeClass('bd-danger');
+                            $('#spanStockNuevoProdE').addClass('dp-none');
+
+                            // En este punto ya con el formulario validado podemos enviar los datos al servidor.
+                            cerrarModal('editarProducto');
+                            $.ajax({
+                                type: "POST",
+                                url: "php/controler.php",
+                                data: "tipo=" + tipo + "&idProducto=" + id + "&nombreNuevoProdE=" + nombreNuevoProdE + "&referenciaNuevoProdE=" + referenciaNuevoProdE + "&precioNuevoProdE=" + precioNuevoProdE + "&pesoNuevoProdE=" + pesoNuevoProdE + "&categoríaNuevoProdE=" + categoríaNuevoProdE + "&stockNuevoProdE=" + stockNuevoProdE,
+                                success: function(r) {
+                                    if (r == 'success') {
+                                        sweetAlertType('success','welcome');
+                                        cerrarModal('closemodalEditProducto');
+                                    }else if(r == 'error'){
+                                        sweetAlertType('error','welcome');
+                                    }else if(r == 'info'){
+                                        sweetAlertType('info','welcome');
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
             }
         }
-    });
+    }
+
+    
 }
 
-// función que limpia formularios por id
+// Función que limpia formularios por id
 function limpiarFormulario(nombre) {
     document.getElementById(nombre).reset();
 }
@@ -460,16 +446,14 @@ function sweetAlertType(type,page, id = false) {
     });
 }
 
-// necesario para abrir cualquier modal
-
+// Necesario para abrir cualquier modal
 function abrirModal(idModal) {
-    $('.overlay').addClass('activeP');
+    $('.overlay'+idModal).addClass('activeP');
     $('#'+idModal).addClass('activeP');
 }
 
-// necesario para cerrar cualquier modal
-
+// Necesario para cerrar cualquier modal
 function cerrarModal(idModal) {
-    $('.overlay').removeClass('activeP');
+    $('.overlay'+idModal).removeClass('activeP');
     $('#'+idModal).removeClass('activeP');
 }

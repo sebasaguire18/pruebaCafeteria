@@ -23,8 +23,8 @@ if ($tabla == 'tblListaProductos') {
                 <td><?php echo $producto['prod_stock']; ?></td>
                 <td><?php echo formatoAFecha($producto['prod_fecha']); ?></td>
                 <td class="px-4 dp-flex alg-itm-center ">
-                    <button title="Editar" value="<?php echo $producto['cont_id']; ?>" onclick="editar('<?php echo $producto['cont_id']; ?>','producto')" class="ruler-button_child bg-warning txt-white pd-2 mgr-2"><i class="icon-pencil"></i></button>
-                    <button title="Eliminar" value="<?php echo $producto['cont_id']; ?>" onclick="eliminar('<?php echo $producto['cont_id']; ?>','producto')" class="ruler-button_child bg-danger txt-white pd-2 mgl-2"><i class="icon-bin"></i></button>
+                    <button title="Editar" value="<?php echo $producto['prod_id']; ?>" onclick="editar('<?php echo $producto['prod_id']; ?>','producto')" class="ruler-button_child bg-warning txt-white pd-2 mgr-2"><i class="icon-pencil"></i></button>
+                    <button title="Eliminar" value="<?php echo $producto['prod_id']; ?>" onclick="eliminar('<?php echo $producto['prod_id']; ?>','producto')" class="ruler-button_child bg-danger txt-white pd-2 mgl-2"><i class="icon-bin"></i></button>
                 </td>
             </tr>
     <?php   

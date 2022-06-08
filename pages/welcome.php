@@ -2,7 +2,7 @@
 <div class="rwg hvh-100">
     <div class="g-reg-1 pd-3">
     </div>
-    <div class="g-reg-4 pdx-3">
+    <div class="g-reg-3 pdx-3">
         <div class="rwg h-50">
             <div class="g-reg-14">
                 <h4 class="mg-2">Producto más vendido</h4>
@@ -29,7 +29,7 @@
         </div>
 
     </div>
-    <div class="g-reg-8 pdx-3">
+    <div class="g-reg-9 pdx-3">
         <div class="rwg">
             <div class="g-reg-7 dp-flex jfy-ctn-start alg-itm-center">
                 <h4 class="mg-2 mgb-5">Lista de productos</h4>
@@ -61,8 +61,8 @@
 
 
 
-<!-- modal  -->
-<div class="overlay" id="overlay">
+<!-- modal crear producto -->
+<div class="overlay overlaycrearProducto" id="overlay">
     <div class="popup part bg-light pd-6" id="crearProducto">
         <a href="#" class="btn-cerrar-popup" onclick="cerrarModal('crearProducto')"><i class="icon-cross"></i></a>
         <form >
@@ -97,5 +97,15 @@
                 <input class="ruler-button_child-lg ruler-button-block bg-primary txt-white" onclick="insertarNuevoProducto()" value="Validar">
             </div>
         </form>
+    </div>
+</div>
+
+<!-- modal editar -->
+<div class="overlay overlayeditarProducto" id="overlay">
+    <div class="popup part bg-light pd-6" id="editarProducto">
+        <a href="#" class="btn-cerrar-popup" onclick="cerrarModal('editarProducto')"><i class="icon-cross"></i></a>
+        <div id="editarProdBody">
+
+        </div>
     </div>
 </div>

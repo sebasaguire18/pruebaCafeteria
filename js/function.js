@@ -19,6 +19,8 @@ function configPage(page) {
     if (page == 'welcome') {
         // contentNav('Welcome');
         $('#titlePage').html(`Bienvenido`);
+        $('.nav-item').removeClass('active');
+        $('.nav-itemInicio').addClass('active');
     }
 }
 
@@ -645,4 +647,18 @@ function sweetAlertType(type,page, id = false) {
             });
         }
     });
+}
+
+// necesario para abrir cualquier modal
+
+function abrirModal(idModal) {
+    $('.overlay').addClass('active');
+    $('#'+idModal).addClass('active');
+}
+
+// necesario para cerrar cualquier modal
+
+function cerrarModal(idModal) {
+    $('.overlay').removeClass('active');
+    $('#'+idModal).removeClass('active');
 }

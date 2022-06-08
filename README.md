@@ -36,3 +36,6 @@ En la carpeta 'includes' tenemos las partes en común como la inlución de archi
 Quiza, haya algunas pequeñas lineas de código que no se utilicen ya que como dije, este conjunto de tecnologías las tengo como base para iniciar cualquier proyecto web.
 
 ![image](https://user-images.githubusercontent.com/42647741/172732567-face61da-1c32-453a-a0cc-205a0b8d2224.png)
+
+![image](https://user-images.githubusercontent.com/42647741/172732682-932d9752-99bc-47b7-bd5e-1ecd48a14dc5.png)
+

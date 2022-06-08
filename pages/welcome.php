@@ -1,4 +1,4 @@
-
+<?php include '../php/function.php'; ?>
 <div class="rwg hvh-100">
     <div class="g-reg-1 pd-3">
     </div>
@@ -8,10 +8,7 @@
                 <h4 class="mg-2">Producto más vendido</h4>
                 <hr>
                 <div class="dp-flex jfy-ctn-center alg-itm-center">
-                    <div class="part">
-                        <h6>Nombre Producto</h6>
-                        <p>precio</p>
-                    </div>
+                    <?php consultaProdMasVendido(); ?>
                 </div>
             </div>
         </div>
@@ -19,11 +16,8 @@
             <div class="g-reg-14">
                 <h4 class="mg-2">Producto con mayor stock</h4>
                 <hr>
-                <div class="dp-flex jfy-ctn-center alg-itm-center">
-                    <div class="part">
-                        <h6>Nombre Producto</h6>
-                        <p>precio</p>
-                    </div>
+                <div class="dp-flex jfy-ctn-center alg-itm-center pdt-5">
+                    <?php consultaProdMasStock(); ?>
                 </div>
             </div>
         </div>
@@ -106,7 +100,6 @@
     <div class="popup part bg-light pd-6" id="editarProducto">
         <a href="#" class="btn-cerrar-popup" onclick="cerrarModal('editarProducto')"><i class="icon-cross"></i></a>
         <div id="editarProdBody">
-
         </div>
     </div>
 </div>

@@ -71,16 +71,32 @@ function selectProductos($status=false){
 }
 
 // consulta SQL del producto más vendido
-function prodMasVendido(){
+function consultaProdMasVendido(){
     include 'conexion-bd.php';
     
-    // $consulaProdMasVendido = ($conexion,"SELECT * FROM ");
+    $consulaProdMasVendido = mysqli_query($conexion,"SELECT *, SUM(venta_cantidad) AS prodMasVendido FROM ventas INNER JOIN productos ON ventas.venta_id_producto = productos.prod_id WHERE venta_status = 1 GROUP BY venta_id_producto ORDER BY prodMasVendido DESC LIMIT 1");
+
+    $productoMasVendido = mysqli_fetch_array($consulaProdMasVendido);
+    ?>
+        <div class="part mgy-7 pd-5">
+            <p class="txt-20"><b>Nombre Producto:</b> <?php echo $productoMasVendido['prod_nombre'] ?></p>
+            <p class="txt-20"><b>Cantidad unidades vendidas:</b> <?php echo $productoMasVendido['prodMasVendido']; ?></p>
+        </div>
+    <?php
 }
 
 // consulta SQL del producto con más stock
-function prodMasStock(){
+function consultaProdMasStock(){
     include 'conexion-bd.php';
     
-        
+    $consultaProdMasStock = mysqli_query($conexion,"SELECT *, MAX(prod_stock) AS stockMax FROM productos WHERE prod_status = 1");
+
+    $productoMasStock = mysqli_fetch_array($consultaProdMasStock);
+    ?>
+        <div class="part mgy-7 pd-5">
+            <p class="txt-20"><b>Nombre Producto:</b> <?php echo $productoMasStock['prod_nombre'] ?></p>
+            <p class="txt-20"><b>Unidades disponibles en stock:</b> <?php echo $productoMasStock['stockMax']; ?></p>
+        </div>
+    <?php
 }
 ?>

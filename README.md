@@ -1,5 +1,7 @@
 # pruebaCafeteria
 Prueba técnica 2022 desarrollo de sistema que gestiona productos y registra venta.
+![image](https://user-images.githubusercontent.com/42647741/172732611-de540d13-f505-43ab-bddb-8c551f928658.png)
+
 
 Me gustaría agradecer por la oportunidad de presentar esta prueba.
 

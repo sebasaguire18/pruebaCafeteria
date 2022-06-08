@@ -1,8 +1,8 @@
 <?php include '../php/function.php'; ?>
 <div class="rwg hvh-100">
-    <div class="g-reg-1 pd-3">
+    <div class="g-reg-1 g-reg-xl-1 g-reg-lg-0 pd-3">
     </div>
-    <div class="g-reg-3 pdx-3">
+    <div class="g-reg-xl-3 g-reg-lg-5 g-reg-md-5 pdx-3">
         <div class="rwg h-50">
             <div class="g-reg-14">
                 <h4 class="mg-2">Producto más vendido</h4>
@@ -23,7 +23,7 @@
         </div>
 
     </div>
-    <div class="g-reg-9 pdx-3">
+    <div class="g-reg-xl-9 g-reg-lg-8 g-reg-md-8 pdx-3">
         <div class="rwg">
             <div class="g-reg-7 dp-flex jfy-ctn-start alg-itm-center">
                 <h4 class="mg-2 mgb-5">Lista de productos</h4>
@@ -50,7 +50,7 @@
             </tbody>
         </table>
     </div>
-    <div class="g-reg-1 pd-3">
+    <div class="g-reg-1 g-reg-xl-1 g-reg-lg-0 pd-3">
     </div>
 </div>
 

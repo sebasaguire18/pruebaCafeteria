@@ -38,30 +38,10 @@
                             <span class="txt-danger dp-none" id="spanPassLoging">Por favor ingresa la contraseña</span>
                             <span class="txt-danger dp-none" id="spanPassLogingError">Contraseña erronea</span>
                         </div>
-                        <div class="ruler-link">
-                            <a id="olvidoPassword" onclick="changeForm('olvidoPass')" class="ruler-link_child">¿Olvidó la contraseña?</a>
-                        </div>
                         <div class="ruler-button">
                             <a id="btnIniciarSesion" type="submit" class="ruler-button_child-lg ruler-button-block bg-primary txt-white">Validar</a>
                         </div>
                     </form>
-                </div>
-                <div class="dp-none bg-trs-6 w-60 bdr-4 pdx-4" id="box-olvidoPass">
-                    <form id="formRegistroUsuario">
-                        <div class="ruler-title">
-                            <h3>Recuperar Cuenta</h3>
-                        </div>
-                        <div class="ruler-input mgy-6">
-                            <input type="email" id="email" class="ruler-input_child-lg bg-trs-6" placeholder="Email" autocomplete="off">
-                        </div>
-                        <div class="ruler-button">
-                            <a class="ruler-button_child-lg ruler-button-block bg-primary txt-white" type="submit">Enviar</a>
-                        </div>
-                    </form>
-                    
-                    <div class="ruler-link dp-flex jfy-ctn-end">
-                        <a id="btnRegistrarCuenta" onclick="changeForm('ini')" class="ruler-link_child">Iniciar Sesión</a>
-                    </div>
                 </div>
             </div>
         </div>

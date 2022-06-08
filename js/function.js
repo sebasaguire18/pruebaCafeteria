@@ -37,6 +37,7 @@ function configPage(page) {
         $('#titlePage').html(`Ventas`);
         $('.nav-item').removeClass('active');
         $('.nav-itemVentas').addClass('active');
+        tablas('tblListaVentas');
     }
 }
 
@@ -66,6 +67,17 @@ function tablas(tabla) {
             }
         });
     }
+    if (tabla == 'tblListaVentas') {
+        $.ajax({
+            type: "POST",
+            url: "pages/tablas.php",
+            data: "tabla=" + tabla,
+            success: function(r) {
+                $('#tblVentas').html(r);
+                tblInit(tabla);
+            }
+        });
+    }
 }
 
 // datatables
@@ -74,6 +86,38 @@ function tblInit(tabla) {
         if (tabla == 'tblListaProductos') {
             // datatable de tabla contactos
             $('#tblListaProductos').DataTable({
+                "language": {
+                    "url": "extensions/datatables/Spanish.json"
+                },
+                responsive: "true",
+                scrollCollapse: true,
+                scrollX: true,
+                dom: 'lfBrtip',
+                buttons: [
+                    {
+                        extend:     'excelHtml5',
+                        text:       '<span class="txt-white icon-file-excel"></span>',
+                        titleattr:  'Exportar a Excel',
+                        className:  'ruler-button_child bg-success'
+                    },
+                    {
+                        extend:     'pdfHtml5',
+                        text:       '<span class="txt-white icon-file-pdf"></span>',
+                        titleattr:  'Exportar a Excel',
+                        className:  'ruler-button_child bg-danger'
+                    },
+                    {
+                        extend:     'print',
+                        text:       '<span class="txt-white icon-printer"></span>',
+                        titleattr:  'Exportar a Excel',
+                        className:  'ruler-button_child bg-info'
+                    },
+                ]
+            });
+        }
+        if (tabla == 'tblListaVentas') {
+            // datatable de tabla contactos
+            $('#tblListaVentas').DataTable({
                 "language": {
                     "url": "extensions/datatables/Spanish.json"
                 },
@@ -242,6 +286,58 @@ function insertarNuevoProducto() {
     }
 }
 
+// Función que inserta un nuevo Producto
+function insertarNuevaVenta() {
+
+    let tipo = "nuevaVenta";
+
+	let exprNumber = /^[a-zA-Z0-9.]+$/;
+
+    let productoAVender = $('#productoAVender').val();
+    let cantidadProdVender = $('#cantidadProdVender').val();
+
+
+    $('#productoAVender','#cantidadProdVender').removeClass('bd-danger');
+    $('#spanProductoAVender','#spanCantidadProdVender').addClass('dp-none');
+
+
+    if(productoAVender == '0' || productoAVender == '0' ){
+        $('#productoAVender').addClass('bd-danger');
+        $('#spanProductoAVender').removeClass('dp-none');
+        return false;
+    }else{
+        $('#productoAVender').removeClass('bd-danger');
+        $('#spanProductoAVender').addClass('dp-none');
+
+        if(cantidadProdVender == '' || !exprNumber.test(cantidadProdVender)){
+            $('#cantidadProdVender').addClass('bd-danger');
+            $('#spanCantidadProdVender').removeClass('dp-none');
+            return false;
+        }else{
+            $('#cantidadProdVender').removeClass('bd-danger');
+            $('#spanCantidadProdVender').addClass('dp-none'); 
+            
+            // En este punto ya con el formulario validado podemos enviar los datos al servidor.
+            $.ajax({
+                type: "POST",
+                url: "php/controler.php",
+                data: "tipo=" + tipo + "&productoAVender=" + productoAVender + "&cantidadProdVender=" + cantidadProdVender,
+                success: function(r) {
+                    if (r == 'success') {
+                        sweetAlertType('success','ventas');
+                    }else if(r == 'error'){
+                        sweetAlertType('error','ventas');
+                    }else if(r == 'info'){
+                        sweetAlertType('info','ventas');
+                    }else if(r == 'stock'){
+                        sweetAlertType('stock','ventas');
+                    }
+                }
+            });
+        }
+    }
+}
+
 // Función para editar por id y tipo de edición
 function editar(id,tipo) {
     if (tipo == 'producto') {
@@ -385,7 +481,6 @@ function limpiarFormulario(nombre) {
     document.getElementById(nombre).reset();
 }
 
-
 // sweetAlert
 function sweetAlertType(type,page, id = false) {
     $(function(){
@@ -395,17 +490,6 @@ function sweetAlertType(type,page, id = false) {
                 title: "Registrado correctamente"
             }).then(() => {
                 contenido(page);
-            });
-        }
-        if (type == 'successNoReload') {
-            Swal.fire({
-                icon: "success",
-                title: "Registrado correctamente"
-            }).then(() => {
-                limpiarFormulario('formNuevoContactoOp');
-                limpiarFormulario('formNuevoProductoOp');
-                limpiarFormulario('formNuevoProductoOrg');
-                limpiarFormulario('formNuevoContactoOrg');
             });
         }
         if (type == 'error') {
@@ -418,6 +502,12 @@ function sweetAlertType(type,page, id = false) {
             Swal.fire({
                 icon: "info",
                 title: "Algunos campos obligatorios deben contener valores"
+            });
+        }
+        if (type == 'stock') {
+            Swal.fire({
+                icon: "info",
+                title: "La cantidad supera nuestras unidades disponibles en stock"
             });
         }
         if (type == 'eliminado') {

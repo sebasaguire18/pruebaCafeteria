@@ -41,6 +41,7 @@
         <table class="tbl tbl-striped" id="tblListaProductos">
             <thead>
                 <tr>
+                    <th>ID Producto</th>
                     <th>Nombre</th>
                     <th>Referencia</th>
                     <th>Precio</th>
@@ -94,7 +95,7 @@
                 <span class="txt-danger dp-none" id="spanStockNuevoProd">Digita un valor numérico o la cantidad no puede ser 0 (cero)</span>
             </div>
             <div class="ruler-button">
-                <input class="ruler-button_child-lg ruler-button-block bg-primary txt-white" onclick="insertarNuevoProducto()" value="Validar">
+                <a class="ruler-button_child-lg ruler-button-block bg-primary txt-white" onclick="insertarNuevoProducto()">Validar</a>
             </div>
         </form>
     </div>

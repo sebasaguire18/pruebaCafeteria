@@ -45,47 +45,4 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#btnRegistrarCuenta').click(function() {
-
-		let name = $('#name').val();
-		let usernameRegis = $('#usernameRegis').val();
-		let passRegis = $('#passRegis').val();
-		let pass2 = $('#pass2').val();
-
-		if(name == ''){
-			$('#name').addClass('dp-none');
-			return false;
-		}else{
-			$('#name').removeClass('dp-none');
-
-			if(usernameRegis == '' || !exprEmail.test(usernameRegis)){
-				$('#usernameRegis').addClass('dp-none');
-				return false;
-			}else{
-				$('#usernameRegis').removeClass('dp-none');
-
-				if(passRegis == ''){
-					$('#passRegis').addClass('dp-none');
-					return false;
-				}else{
-					$('#passRegis').removeClass('dp-none');
-					if(pass2 == ''){
-						$('#pass2').addClass('dp-none');
-						return false;
-					}else{
-						$('#pass2').removeClass('dp-none');
-
-						if(passRegis != pass2){
-							$('#textPassNoIgual').removeClass('d-none');
-							return false;
-						}else{
-							$('#textPassNoIgual').addClass('d-none');
-						}
-					}
-				}
-			}
-		}
-		
-	});
-
 });	

@@ -33,6 +33,7 @@ if($_SESSION['userID']){
         }
     }
 
+    // eliminar producto (realmente no realizo el delete para tener seguimiento de los registros dentro de cada aplicación)
     function eliminarProducto($idEliminar){
         include 'conexion-bd.php';
 
@@ -45,6 +46,34 @@ if($_SESSION['userID']){
         }
     }
 
+
+    // insertar nueva venta
+    function nuevaVenta($productoAVender,$cantidadProdVender,$idUserSession){
+        include 'conexion-bd.php';
+
+        $consultarStock = mysqli_query($conexion,"SELECT * FROM productos WHERE prod_id = '$productoAVender'");
+        $productoConsulta = mysqli_fetch_array($consultarStock);
+        $cantidadStockNuevo = $productoConsulta['prod_stock'] - $cantidadProdVender;
+
+        if ($cantidadStockNuevo > 0) {
+            $editarNuevoStock = mysqli_query($conexion,"UPDATE productos SET prod_stock = $cantidadStockNuevo WHERE prod_id = '$productoAVender'");
+            
+            if ($editarNuevoStock) {
+                $id = uniqid();
+
+                $nuevoProd = mysqli_query($conexion,"INSERT INTO ventas (venta_id,venta_id_producto,venta_cantidad,venta_usuario) 
+                                            VALUES('$id','$productoAVender',$cantidadProdVender,'$idUserSession')");
+                
+                if ($nuevoProd) {
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+        }else {
+            return 'stock';
+        }
+    }
 }else {
     header("location: index.php");
 }

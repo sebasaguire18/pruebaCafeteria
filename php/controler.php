@@ -8,7 +8,7 @@ include 'modelo.php';
 
 $tipo = $_POST['tipo'];
 
-// -----------------------------DATOS----------------------------- //
+// -----------------------------PRODUCTOS----------------------------- //
 
     if ($tipo == 'nuevoProducto') {
         
@@ -78,4 +78,32 @@ $tipo = $_POST['tipo'];
 
     }
 
-// -----------------------------DATOS----------------------------- //
+// -----------------------------PRODUCTOS----------------------------- //
+
+// -----------------------------VENTA----------------------------- //
+
+    if ($tipo == 'nuevaVenta') {
+        
+        $productoAVender = $_POST['productoAVender'];
+        $cantidadProdVender = $_POST['cantidadProdVender'];
+        
+        if ($productoAVender == "" || $cantidadProdVender == "")  {
+            $html = 'info';
+            echo $html;
+        }else {
+            $nuevaVenta=nuevaVenta($productoAVender,$cantidadProdVender,$idUserSession);
+
+            if ($nuevaVenta === true) {
+                $html = 'success';
+                echo $html;
+            }else if ($nuevaVenta === false) {
+                $html = 'error';
+                echo $html;
+            }else {
+                $html = 'stock';
+                echo $html;
+            }
+        }
+    }
+
+// -----------------------------VENTA----------------------------- //

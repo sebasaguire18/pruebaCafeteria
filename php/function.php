@@ -63,9 +63,9 @@ function selectProductos($status=false){
     ?>
             <option value="0" selected>Elegir producto...</option>
     <?php
-        while ($datos = mysqli_fetch_array($seleccionarPorductos)) {
+        while ($productos = mysqli_fetch_array($seleccionarPorductos)) {
     ?>
-            <option value="<?php echo $datos['prod_id'] ?>"><?php echo $datos['prod_nombre']?></option>
+            <option value="<?php echo $productos['prod_id'] ?>"><?php echo $productos['prod_id'] .' - '. $productos['prod_nombre']?></option>
     <?php 
         }
 }

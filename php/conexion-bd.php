@@ -1,0 +1,1 @@
+<?php $conexion=mysqli_connect("localhost","root","","bltienda") or die("Problemas con la conexion"); ?>

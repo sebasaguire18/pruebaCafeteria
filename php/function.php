@@ -74,7 +74,7 @@ function selectProductos($status=false){
 function prodMasVendido(){
     include 'conexion-bd.php';
     
-    $consulaProdMasVendido = ($conexion,"SELECT * FROM ");
+    // $consulaProdMasVendido = ($conexion,"SELECT * FROM ");
 }
 
 // consulta SQL del producto con más stock

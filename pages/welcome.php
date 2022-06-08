@@ -1,6 +1,8 @@
 
 <div class="rwg hvh-100">
-    <div class="g-reg-3 pdx-3">
+    <div class="g-reg-1 pd-3">
+    </div>
+    <div class="g-reg-4 pdx-3">
         <div class="rwg h-50">
             <div class="g-reg-14">
                 <h4 class="mg-2">Producto más vendido</h4>
@@ -28,7 +30,14 @@
 
     </div>
     <div class="g-reg-8 pdx-3">
-        <h4 class="mg-2 mgb-5">Lista de productos</h4>
+        <div class="rwg">
+            <div class="g-reg-7 dp-flex jfy-ctn-start alg-itm-center">
+                <h4 class="mg-2 mgb-5">Lista de productos</h4>
+            </div>
+            <div class="g-reg-7 dp-flex jfy-ctn-end alg-itm-center">
+                <a class="ruler-button_child bg-success txt-white" onclick="abrirModal('crearProducto')" title="Crear Producto"> <span class="icon-plus"></span></a>
+            </div>
+        </div>
         <table class="tbl tbl-striped" id="tblListaProductos">
             <thead>
                 <tr>
@@ -46,16 +55,7 @@
             </tbody>
         </table>
     </div>
-    <div class="g-reg-3 pdx-3">
-        <h4>3</h4>
-        <h4>3</h4>
-        <h4>3</h4>
-        <h4>3</h4>
-        <h4>3</h4>
-        <h4>3</h4>
-        <h4>3</h4>
-        <h4>3</h4>
-        <h4>3</h4>
+    <div class="g-reg-1 pd-3">
     </div>
 </div>
 
@@ -63,27 +63,38 @@
 
 <!-- modal  -->
 <div class="overlay" id="overlay">
-    <div class="popup part bg-trs-6 pd-6" id="popup">
-        <a href="#" class="btn-cerrar-popup" onclick="cerrarModal('popup')"><i class="icon-cross"></i></a>
-        <form action="#" method="post">
+    <div class="popup part bg-light pd-6" id="crearProducto">
+        <a href="#" class="btn-cerrar-popup" onclick="cerrarModal('crearProducto')"><i class="icon-cross"></i></a>
+        <form >
             <div class="ruler-title">
-                <h3>Iniciar Sesión</h3>
+                <h3>Añadir Nuevo Producto</h3>
             </div>
             <div class="ruler-input mgt-4 contenedor-inputs">
-                <input type="email" id="usernameLoging" class="ruler-input_child-lg bg-trs-6" placeholder="Email" autocomplete="off">
-                <span class="txt-danger dp-none" id="spanUsernameLoging"> Por favor ingresa un email valido</span>
-                <span class="txt-danger dp-none" id="spanUsernameLogingError">Email no encontrado</span>
+                <input type="text" id="nombreNuevoProd" class="ruler-input_child-lg bg-trs-6" placeholder="Nombre" autocomplete="off">
+                <span class="txt-danger dp-none" id="spanNombreNuevoProd"> Por favor ingresa el nombre del producto</span>
+            </div>
+            <div class="ruler-input contenedor-inputs">
+                <input type="text" id="referenciaNuevoProd" class="ruler-input_child-lg bg-trs-6" placeholder="Referencia" autocomplete="off">
+                <span class="txt-danger dp-none" id="spanReferenciaNuevoProd">Por favor ingresa la referencia</span>
+            </div>
+            <div class="ruler-input contenedor-inputs">
+                <input type="number" id="precioNuevoProd" class="ruler-input_child-lg bg-trs-6" placeholder="Precio" autocomplete="off">
+                <span class="txt-danger dp-none" id="spanPrecioNuevoProd">Digita un valor numérico o la cantidad no puede ser 0 (cero)</span>
+            </div>
+            <div class="ruler-input contenedor-inputs">
+                <input type="number" id="pesoNuevoProd" class="ruler-input_child-lg bg-trs-6" placeholder="Peso en Lb (libras)" autocomplete="off">
+                <span class="txt-danger dp-none" id="spanPesoNuevoProd">Digita un valor numérico o la cantidad no puede ser 0 (cero)</span>
+            </div>
+            <div class="ruler-input contenedor-inputs">
+                <input type="text" id="categoríaNuevoProd" class="ruler-input_child-lg bg-trs-6" placeholder="Categoría" autocomplete="off">
+                <span class="txt-danger dp-none" id="spanCategoríaNuevoProd">Por favor ingresa la categoría</span>
             </div>
             <div class="ruler-input mgb-4 contenedor-inputs">
-                <input type="password" id="passLoging" class="ruler-input_child-lg bg-trs-6" placeholder="Contraseña" autocomplete="off">
-                <span class="txt-danger dp-none" id="spanPassLoging">Por favor ingresa la contraseña</span>
-                <span class="txt-danger dp-none" id="spanPassLogingError">Contraseña erronea</span>
-            </div>
-            <div class="ruler-link">
-                <a id="olvidoPassword" onclick="changeForm('olvidoPass')" class="ruler-link_child">¿Olvidó la contraseña?</a>
+                <input type="number" id="stockNuevoProd" class="ruler-input_child-lg bg-trs-6" placeholder="Unidades en Stock" autocomplete="off">
+                <span class="txt-danger dp-none" id="spanStockNuevoProd">Digita un valor numérico o la cantidad no puede ser 0 (cero)</span>
             </div>
             <div class="ruler-button">
-                <input type="submit" class="ruler-button_child-lg ruler-button-block bg-primary txt-white" value="Validar">
+                <input class="ruler-button_child-lg ruler-button-block bg-primary txt-white" onclick="insertarNuevoProducto()" value="Validar">
             </div>
         </form>
     </div>

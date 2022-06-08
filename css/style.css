@@ -1,5 +1,5 @@
 .overlay{
-    background: rgba(0, 0, 0, .4);
+    background: rgba(0, 0, 0, 0.4);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -12,7 +12,7 @@
     overflow: hidden;
     visibility: hidden;
 }
-.overlay.active{
+.overlay.activeP{
     visibility: visible;
 }
 .popup{
@@ -22,8 +22,8 @@
     transform: scale(1.7);
 }
 .popup .btn-cerrar-popup{
-    font-size: 35px;
-    line-height: 35px;
+    font-size: 20px;
+    line-height: 20px;
     display: block;
     text-align: right;
     color: var(--danger);
@@ -47,14 +47,14 @@
 
 /* Animaciones popup */
 
-.popup.active{
+.popup.activeP{
     opacity: 1;
     transform: scale(1);
 }
-.popup.active h3{
+.popup.activeP h3{
     animation: entradaTitulo .8s ease .5s forwards;
 }
-.popup.active .contenedor-inputs{
+.popup.activeP .contenedor-inputs{
     animation: entradaInputs 1s ease 1s forwards;
 }
 

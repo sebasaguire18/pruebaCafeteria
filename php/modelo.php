@@ -4,47 +4,47 @@ session_start();
 if($_SESSION['userID']){
     $idUserSession = $_SESSION['userID'];
 
-    // DATOS
-    function nuevaDato($datos){
+    // insertar nuevo producto
+    function nuevoProducto($nombreNuevoProd,$referenciaNuevoProd,$precioNuevoProd,$pesoNuevoProd,$categoríaNuevoProd,$stockNuevoProd,$idUserSession){
         include 'conexion-bd.php';
 
         $id = uniqid();
 
-        $nuevaDato = mysqli_query($conexion,"INSERT INTO tabla (tabla_id) 
-                                    VALUES('$datos')");
+        $nuevoProd = mysqli_query($conexion,"INSERT INTO productos (prod_id,prod_nombre,prod_ref,prod_precio,prod_peso,prod_cat,prod_stock,prod_usuario) 
+                                    VALUES('$id','$nombreNuevoProd','$referenciaNuevoProd',$precioNuevoProd,$pesoNuevoProd,'$categoríaNuevoProd',$stockNuevoProd,'$idUserSession')");
         
-        if ($nuevaDato) {
+        if ($nuevoProd) {
             return true;
         }else {
             return false;
         }
     }
 
-    function editarDato($datos){
-        include 'conexion-bd.php';
+    // function editarDato($datos){
+    //     include 'conexion-bd.php';
 
-        if ($datos == "") {
-            $editarDato = mysqli_query($conexion,"UPDATE tabla SET tabla_id = '$datos'");
+    //     if ($datos == "") {
+    //         $editarDato = mysqli_query($conexion,"UPDATE tabla SET tabla_id = '$datos'");
             
-            if ($editarDato) {
-                return true;
-            }else {
-                return false;
-            }
-        }
-    }
+    //         if ($editarDato) {
+    //             return true;
+    //         }else {
+    //             return false;
+    //         }
+    //     }
+    // }
 
-    function eliminarDato($idEliminar){
-        include 'conexion-bd.php';
+    // function eliminarDato($idEliminar){
+    //     include 'conexion-bd.php';
 
-        $eliminarDato = mysqli_query($conexion,"UPDATE tabla SET tabla_status = 0 WHERE tabla_id = '$idEliminar'");
+    //     $eliminarDato = mysqli_query($conexion,"UPDATE tabla SET tabla_status = 0 WHERE tabla_id = '$idEliminar'");
         
-        if ($eliminarDato) {
-            return true;
-        }else {
-            return false;
-        }
-    }
+    //     if ($eliminarDato) {
+    //         return true;
+    //     }else {
+    //         return false;
+    //     }
+    // }
 
 }else {
     header("location: index.php");

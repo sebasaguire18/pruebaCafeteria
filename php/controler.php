@@ -10,17 +10,22 @@ $tipo = $_POST['tipo'];
 
 // -----------------------------DATOS----------------------------- //
 
-    if ($tipo == 'nuevaDato') {
+    if ($tipo == 'nuevoProducto') {
         
-        $datos = $_POST['datos'];
+        $nombreNuevoProd = $_POST['nombreNuevoProd'];
+        $referenciaNuevoProd = $_POST['referenciaNuevoProd'];
+        $precioNuevoProd = $_POST['precioNuevoProd'];
+        $pesoNuevoProd = $_POST['pesoNuevoProd'];
+        $categoríaNuevoProd = $_POST['categoríaNuevoProd'];
+        $stockNuevoProd = $_POST['stockNuevoProd'];
         
-        if ($datos == "")  {
+        if ($nombreNuevoProd == "" || $referenciaNuevoProd == "" || $precioNuevoProd == "" || $pesoNuevoProd == "" || $categoríaNuevoProd == "" || $stockNuevoProd == "")  {
             $html = 'info';
             echo $html;
         }else {
-            $nuevaDato=nuevaDato($datos);
+            $nuevoProducto=nuevoProducto($nombreNuevoProd,$referenciaNuevoProd,$precioNuevoProd,$pesoNuevoProd,$categoríaNuevoProd,$stockNuevoProd,$idUserSession);
 
-            if ($nuevaDato === true) {
+            if ($nuevoProducto === true) {
                 $html = 'success';
                 echo $html;
             }else {

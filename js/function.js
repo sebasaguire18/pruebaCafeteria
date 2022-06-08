@@ -150,116 +150,96 @@ function changeForm(form) {
     }
 }
 
-// función que inserta un nuevo registro
-function insertarNuevoRegistro(reload) {
-
-    var tipo = "nuevoRegistro";
-    
-    if (reload == 1) {
-        // Aquí recogemos los datos de los campos que tengamos en los formularios
-        var Registro1 = $('#Registro1').val();
-        var Registro2 = $('#Registro2').val();
-    }
-
-    $.ajax({
-        type: "POST",
-        url: "php/controler.php",
-        data: "tipo=" + tipo + "&Registro1=" + Registro1 + "&Registro2=" + Registro2 + "&reload=" + reload,
-        success: function(r) {
-            if (reload == 1) {
-                if (r == 'success') {
-                    // con esta función creamos alertas, debe enviarse el tipo de alerta y la página a recargar 
-                    // *(Al enviar success como primer parametro le indicamos a la función 
-                    // que me cree la alerta y que después de su confirmación se recargue la página)*
-                    sweetAlertType('success','welcome');
-                    // con esta función creamos modales, debe enviarse el id del botón que cerraría el modal de manera manual
-                    cerrarModal('closemodalNuevoRegistro');
-                }else if(r == 'error'){
-                    // con esta función creamos alertas, debe enviarse el tipo de alerta y la página a recargar 
-                    // *(Al ser de este tipo no recarga la página nunca)*
-                    sweetAlertType('error','welcome');
-                }else if(r == 'info'){
-                    // con esta función creamos alertas, debe enviarse el tipo de alerta y la página a recargar 
-                    // *(Al ser de este tipo no recarga la página nunca)*
-                    sweetAlertType('info','welcome');
-                }
-            }else{
-                if(r == 'error'){
-                    sweetAlertType('error','contactos');
-                }else if(r == 'info'){
-                    sweetAlertType('info','contactos');
-                }else {
-                    if (reload == 'op') {
-                        var contactosExistentes = $('#choice4Oportunidades').val().toString();
-                        r = contactosExistentes+','+r;
-                        optionSelects('optionsContactos','optionsContactosOp',r ,'choice4Oportunidades',reload);
-                        sweetAlertType('successNoReload','optionsContactosOp');
-                        cerrarModal('closemodalNuevoContacto');
-                    }else if (reload == 'org') {
-                        var contactosExistentes = $('#choice1Organizaciones').val().toString();
-                        r = contactosExistentes+','+r;
-                        
-                        optionSelects('optionsContactos','optionsContactosOrg',r,'choice1Organizaciones',reload);
-                        sweetAlertType('successNoReload','optionsContactosOrg');
-                        cerrarModal('closemodalNuevoContactoOrg');
-                        
-                    }
-                }
-            }
-        }
-    });
-}
-
 // función que inserta un nuevo Producto
-function insertarNuevoProducto(reload) {
+function insertarNuevoProducto() {
 
-    var tipo = "nuevoProducto";
+    let tipo = "nuevoProducto";
 
-    if (reload == 1) {
-        var selectLineaNegocioProd = $('#selectLineaNegocioProd').val();
-        var nombreProducto = $('#nombreProducto').val();
-    }else if(reload == 'op'){
-        var selectLineaNegocioProd = $('#selectLineaNegocioProdOp').val();
-        var nombreProducto = $('#nombreProductoOp').val();
-        var iniModal='Op'
-    }else if(reload == 'org'){
-        var selectLineaNegocioProd = $('#selectLineaNegocioProdOrg').val();
-        var nombreProducto = $('#nombreProductoOrg').val();
-        var iniModal='Org'
-    }
+	let exprNumber = /^[a-zA-Z0-9.]+$/;
 
-    $.ajax({
-        type: "POST",
-        url: "php/controler.php",
-        data: "tipo=" + tipo + "&nombreProducto=" + nombreProducto + "&selectLineaNegocioProd=" + selectLineaNegocioProd + "&reload=" + reload,
-        success: function(r) {
-            if (reload == 1) {
-                if (r == 'success') {
-                    sweetAlertType('success','productos');
-                    cerrarModal('modalNuevoProducto');
-                }else if(r == 'error'){
-                    sweetAlertType('error','productos');
-                }else if(r == 'info'){
-                    sweetAlertType('info','productos');
-                }
+    let nombreNuevoProd = $('#nombreNuevoProd').val();
+    let referenciaNuevoProd = $('#referenciaNuevoProd').val();
+    let precioNuevoProd = $('#precioNuevoProd').val();
+    let pesoNuevoProd = $('#pesoNuevoProd').val();
+    let categoríaNuevoProd = $('#categoríaNuevoProd').val();
+    let stockNuevoProd = $('#stockNuevoProd').val();
+
+
+    $('#nombreNuevoProd','#referenciaNuevoProd','#precioNuevoProd','#pesoNuevoProd','#categoríaNuevoProd','#stockNuevoProd').removeClass('bd-danger');
+    $('#spanNombreNuevoProd','#spanReferenciaNuevoProd','#spanPrecioNuevoProd','#spanPesoNuevoProd','#spanCategoríaNuevoProd','#spanStockNuevoProd').addClass('dp-none');
+
+
+    if(nombreNuevoProd == ''){
+        $('#nombreNuevoProd').addClass('bd-danger');
+        $('#spanNombreNuevoProd').removeClass('dp-none');
+        return false;
+    }else{
+        $('#nombreNuevoProd').removeClass('bd-danger');
+        $('#spanNombreNuevoProd').addClass('dp-none');
+
+        if(referenciaNuevoProd == ''){
+            $('#referenciaNuevoProd').addClass('bd-danger');
+            $('#spanReferenciaNuevoProd').removeClass('dp-none');
+            return false;
+        }else{
+            $('#referenciaNuevoProd').removeClass('bd-danger');
+            $('#spanReferenciaNuevoProd').addClass('dp-none');
+            
+            if(precioNuevoProd == '' || !exprNumber.test(precioNuevoProd)){
+                $('#precioNuevoProd').addClass('bd-danger');
+                $('#spanPrecioNuevoProd').removeClass('dp-none');
+                return false;
             }else{
-                if(r == 'error'){
-                    sweetAlertType('error','productos');
-                }else if(r == 'info'){
-                    sweetAlertType('info','productos');
-                }else {
-                    if (reload == 'op') {
-                        var productosExistentes = $('#choice5Oportunidades').val().toString();
-                        r = productosExistentes+','+r;
-                        console.log(r);
-                        optionSelects('optionsProductos','choice5Oportunidades',r ,'choice5Oportunidades',reload);
-                        sweetAlertType('successNoReload','optionsProductosOp');
-                        cerrarModal('modalNuevoProducto');
+                $('#precioNuevoProd').removeClass('bd-danger');
+                $('#spanPrecioNuevoProd').addClass('dp-none'); 
+                
+                if(pesoNuevoProd == '' || !exprNumber.test(pesoNuevoProd)){
+                    $('#pesoNuevoProd').addClass('bd-danger');
+                    $('#spanPesoNuevoProd').removeClass('dp-none');
+                    return false;
+                }else{
+                    $('#pesoNuevoProd').removeClass('bd-danger');
+                    $('#spanPesoNuevoProd').addClass('dp-none'); 
+
+                    if(categoríaNuevoProd == ''){
+                        $('#categoríaNuevoProd').addClass('bd-danger');
+                        $('#spanCategoríaNuevoProd').removeClass('dp-none');
+                        return false;
+                    }else{
+                        $('#categoríaNuevoProd').removeClass('bd-danger');
+                        $('#spanCategoríaNuevoProd').addClass('dp-none');
+                        
+                        if(stockNuevoProd == '' || !exprNumber.test(precioNuevoProd)){
+                            $('#stockNuevoProd').addClass('bd-danger');
+                            $('#spanStockNuevoProd').removeClass('dp-none');
+                            return false;
+                        }else{
+                            $('#stockNuevoProd').removeClass('bd-danger');
+                            $('#spanStockNuevoProd').addClass('dp-none');
+
+                            // En este punto ya con el formulario validado podemos enviar los datos al servidor.
+                            cerrarModal('crearProducto');
+                            $.ajax({
+                                type: "POST",
+                                url: "php/controler.php",
+                                data: "tipo=" + tipo + "&nombreNuevoProd=" + nombreNuevoProd + "&referenciaNuevoProd=" + referenciaNuevoProd + "&precioNuevoProd=" + precioNuevoProd + "&pesoNuevoProd=" + pesoNuevoProd + "&categoríaNuevoProd=" + categoríaNuevoProd + "&stockNuevoProd=" + stockNuevoProd,
+                                success: function(r) {
+                                    if (r == 'success') {
+                                        sweetAlertType('success','welcome');
+                                        cerrarModal('modalNuevoProducto');
+                                    }else if(r == 'error'){
+                                        sweetAlertType('error','welcome');
+                                    }else if(r == 'info'){
+                                        sweetAlertType('info','welcome');
+                                    }
+                                }
+                            });
+                        }
                     }
                 }
             }
         }
-    });
+    }
 }
 
 // función para editar por id y tipo de edición
@@ -393,9 +373,9 @@ function ConfirmEliminar(id,tipo) {
 // función para editar Productos
 function editarProducto(id) {
     
-    var tipo = "editarProducto";
-    var selectLineaNegocioProdE = $('#selectLineaNegocioProdE').val();
-    var nombreProductoE = $('#nombreProductoE').val();
+    let tipo = "editarProducto";
+    let selectLineaNegocioProdE = $('#selectLineaNegocioProdE').val();
+    let nombreProductoE = $('#nombreProductoE').val();
 
     $.ajax({
         type: "POST",
@@ -483,13 +463,13 @@ function sweetAlertType(type,page, id = false) {
 // necesario para abrir cualquier modal
 
 function abrirModal(idModal) {
-    $('.overlay').addClass('active');
-    $('#'+idModal).addClass('active');
+    $('.overlay').addClass('activeP');
+    $('#'+idModal).addClass('activeP');
 }
 
 // necesario para cerrar cualquier modal
 
 function cerrarModal(idModal) {
-    $('.overlay').removeClass('active');
-    $('#'+idModal).removeClass('active');
+    $('.overlay').removeClass('activeP');
+    $('#'+idModal).removeClass('activeP');
 }

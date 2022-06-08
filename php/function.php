@@ -52,22 +52,35 @@ function formatoAPrecio($precio){
 }
 
 // crear select
-function selectDatos($status=false){
+function selectProductos($status=false){
     include 'conexion-bd.php';
 
     if ($status) {
-        $seleccionarDatos = mysqli_query($conexion," SELECT * FROM datbla WHERE tabla_status = $status ");
+        $seleccionarPorductos = mysqli_query($conexion," SELECT * FROM productos WHERE prod_status = $status ");
     }else {
-        $seleccionarDatos = mysqli_query($conexion," SELECT * FROM datbla WHERE tabla_status = 1");
+        $seleccionarPorductos = mysqli_query($conexion," SELECT * FROM productos WHERE prod_status = 1");
     }
     ?>
-            <option value="0" selected>Datos</option>
+            <option value="0" selected>Elegir producto...</option>
     <?php
-        while ($datos = mysqli_fetch_array($seleccionarDatos)) {
+        while ($datos = mysqli_fetch_array($seleccionarPorductos)) {
     ?>
-            <option value="<?php echo $datos['datos_id'] ?>"><?php echo $datos['datos_nombre']?></option>
+            <option value="<?php echo $datos['prod_id'] ?>"><?php echo $datos['prod_nombre']?></option>
     <?php 
         }
 }
 
+// consulta SQL del producto más vendido
+function prodMasVendido(){
+    include 'conexion-bd.php';
+    
+    $consulaProdMasVendido = ($conexion,"SELECT * FROM ");
+}
+
+// consulta SQL del producto con más stock
+function prodMasStock(){
+    include 'conexion-bd.php';
+    
+        
+}
 ?>

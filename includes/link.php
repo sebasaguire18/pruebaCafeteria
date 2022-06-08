@@ -15,3 +15,6 @@
 
 <!-- iconos icomoon-->
 <link rel="stylesheet" href="extensions/iconos/stylee.css">
+
+<!-- data tables-->
+<link rel="stylesheet" href="extensions/datatables/dataTables.bootstrap4.min.css">

@@ -1,6 +1,7 @@
+
 <div class="rwg hvh-100">
-    <div class="g-reg-3">
-        <div class="rwg pdx-3 h-50">
+    <div class="g-reg-3 pdx-3">
+        <div class="rwg h-50">
             <div class="g-reg-14">
                 <h4 class="mg-2">Producto más vendido</h4>
                 <hr>
@@ -12,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="rwg pdx-3 h-50">
+        <div class="rwg h-50">
             <div class="g-reg-14">
                 <h4 class="mg-2">Producto con mayor stock</h4>
                 <hr>
@@ -26,18 +27,26 @@
         </div>
 
     </div>
-    <div class="g-reg-8">
-        <h4>2</h4>
-        <h4>2</h4>
-        <h4>2</h4>
-        <h4>2</h4>
-        <h4>2</h4>
-        <h4>2</h4>
-        <h4>2</h4>
-        <h4>2</h4>
-        <h4>2</h4>
+    <div class="g-reg-8 pdx-3">
+        <h4 class="mg-2">Lista de productos</h4>
+        <table class="tbl tbl-striped pdy-4" id="tblListaProductos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Referencia</th>
+                    <th>Precio</th>
+                    <th>Peso</th>
+                    <th>Categoría</th>
+                    <th>Stock</th>
+                    <th>Fecha creación</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="tblProductos">
+            </tbody>
+        </table>
     </div>
-    <div class="g-reg-3">
+    <div class="g-reg-3 pdx-3">
         <h4>3</h4>
         <h4>3</h4>
         <h4>3</h4>

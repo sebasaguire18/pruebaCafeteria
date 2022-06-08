@@ -1,0 +1,28 @@
+
+
+{
+    "sProcessing":     "<span class='text-black'>Procesando...</span>",
+    "sLengthMenu":     "<p class='text-black' style='color:black;'>Mostrar _MENU_ registros </p>",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "<p class='text-black'>Mostrando del _START_ al _END_ de un total de _TOTAL_ filas </p>",
+    "sInfoEmpty":      "<span class='text-black'>Mostrando del 0 al 0 de un total de 0 </span>",
+    "sInfoFiltered":   "<span class='text-secondary pl-3'>(filtrado de un total de _MAX_ registros)</span>",
+    "sSearch":         "<span class='text-black'>Buscar:</span>",
+    "sInfoThousands":  ".",
+    "sLoadingRecords": "<p class='text-black'>Cargando...</p>",
+    "oPaginate": {
+        "sFirst":    "<i class='bi bi-chevron-bar-left'></i>",
+        "sLast":     "<i class='bi bi-chevron-bar-right'></i>",
+        "sNext":     "<i class='bi bi-chevron-right'></i>",
+        "sPrevious": "<i class='bi bi-chevron-left'></i>"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    },
+    "buttons": {
+        "copy": "Copiar",
+        "colvis": "Visibilidad"
+    }
+}

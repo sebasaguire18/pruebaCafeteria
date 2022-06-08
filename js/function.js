@@ -12,15 +12,31 @@ function contenido(ventana) {
             }
         });        
     }
+    if (ventana == 'ventas') {
+        $.ajax({
+            type: "POST",
+            url: "pages/ventas.php",
+            data: "ventana=" + ventana,
+            success: function(r) {
+                configPage('ventas');
+                $('#contentPrincipal').html(r);
+            }
+        });        
+    }
 }
 
 // función que da configuraciones extra al cargar el contenido de la vista
 function configPage(page) {
     if (page == 'welcome') {
-        // contentNav('Welcome');
         $('#titlePage').html(`Bienvenido`);
         $('.nav-item').removeClass('active');
         $('.nav-itemInicio').addClass('active');
+        tablas('tblListaProductos');
+    }
+    if (page == 'ventas') {
+        $('#titlePage').html(`Ventas`);
+        $('.nav-item').removeClass('active');
+        $('.nav-itemVentas').addClass('active');
     }
 }
 
@@ -39,17 +55,55 @@ function contentNav(nav) {
 
 // función que optiene el contenido de tablas dependiendo de su id
 function tablas(tabla) {
-    if (tabla == 'tblLista') {
+    if (tabla == 'tblListaProductos') {
         $.ajax({
             type: "POST",
             url: "pages/tablas.php",
             data: "tabla=" + tabla,
             success: function(r) {
-                $('#tblContent').html(r);
+                $('#tblProductos').html(r);
                 tblInit(tabla);
             }
         });
     }
+}
+
+// datatables
+function tblInit(tabla) {
+    $(function(){
+        if (tabla == 'tblListaProductos') {
+            // datatable de tabla contactos
+            $('#tblListaProductos').DataTable({
+                "language": {
+                    "url": "extensions/datatables/Spanish.json"
+                },
+                responsive: "true",
+                scrollCollapse: true,
+                scrollX: true,
+                dom: 'Blfrtip',
+                buttons: [
+                    {
+                        extend:     'excelHtml5',
+                        text:       '<i class="icon-file-excel"></i>',
+                        titleattr:  'Exportar a Excel',
+                        className:  'btn btn-success'
+                    },
+                    {
+                        extend:     'pdfHtml5',
+                        text:       '<i class="icon-file-pdf"></i>',
+                        titleattr:  'Exportar a Excel',
+                        className:  'btn btn-danger'
+                    },
+                    {
+                        extend:     'print',
+                        text:       '<i class="icon-printer"></i>',
+                        titleattr:  'Exportar a Excel',
+                        className:  'btn btn-info'
+                    },
+                ]
+            });
+        }
+    });
 }
 
 // Función para iniciar sesión
@@ -365,229 +419,6 @@ function limpiarFormulario(nombre) {
     document.getElementById(nombre).reset();
 }
 
-// datatables
-function tblInit(tabla) {
-    $(function(){
-        if (tabla == 'tblLisContactos') {
-            // datatable de tabla contactos
-            var table =  $('#tblListaContactos').DataTable({
-                "language": {
-                    "url": "extensions/datatables/Spanish.json"
-                },
-                responsive: "true",
-                scrollCollapse: true,
-                scrollX: true,
-                scrollY: "400px",
-                dom: 'lfrBtip',
-                buttons: [
-                    {
-                        extend:     'excelHtml5',
-                        text:       '<i class="fas fa-file-excel"></i>',
-                        titleattr:  'Exportar a Excel',
-                        className:  'btn btn-success mr-4 ml-3',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    },
-                    // {
-                    //     extend:     'pdfHtml5',
-                    //     text:       '<i class="bi bi-file-post"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-danger'
-                    // },
-                    // {
-                    //     extend:     'print',
-                    //     text:       '<i class="bi bi-printer"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-info'
-                    // },
-                ]
-            });
-            $('.toggle-vis').on( 'click', function () {
-                
-                // Get the column API object
-                var column = table.column( $(this).attr('data-column') );
-         
-                // Toggle the visibility
-                column.visible( ! column.visible() );
-            } );
-        }
-        if (tabla == 'tblLisLineaNegocio') {
-            // datatable de tabla productos
-            var table =  $('#tblListaLineaNegocio').DataTable({
-                "language": {
-                    "url": "extensions/datatables/Spanish.json"
-                },
-                responsive: "true",
-                dom: 'Blfrtip',
-                scrollCollapse: true,
-                scrollY: "400px",
-                buttons: [
-                    {
-                        extend:     'excelHtml5',
-                        text:       '<i class="fas fa-file-excel"></i>',
-                        titleattr:  'Exportar a Excel',
-                        className:  'btn btn-success mr-4 ml-3',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    },
-                    // {
-                    //     extend:     'pdfHtml5',
-                    //     text:       '<i class="bi bi-file-post"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-danger'
-                    // },
-                    // {
-                    //     extend:     'print',
-                    //     text:       '<i class="bi bi-printer"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-info'
-                    // },
-                ]
-            });
-            $('.toggle-vis').on( 'click', function () {
-        
-                // Get the column API object
-                var column = table.column( $(this).attr('data-column') );
-        
-                // Toggle the visibility
-                column.visible( ! column.visible() );
-            } );
-        }
-        if (tabla == 'tblLisProductos') {
-            // datatable de tabla productos
-            var table =  $('#tblListaProductos').DataTable({
-                "language": {
-                    "url": "extensions/datatables/Spanish.json"
-                },
-                responsive: "true",
-                dom: 'Blfrtip',
-                scrollCollapse: true,
-                scrollX: true,
-                scrollY: "400px",
-                buttons: [
-                    {
-                        extend:     'excelHtml5',
-                        text:       '<i class="fas fa-file-excel"></i>',
-                        titleattr:  'Exportar a Excel',
-                        className:  'btn btn-success mr-4 ml-3',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    },
-                    // {
-                    //     extend:     'pdfHtml5',
-                    //     text:       '<i class="bi bi-file-post"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-danger'
-                    // },
-                    // {
-                    //     extend:     'print',
-                    //     text:       '<i class="bi bi-printer"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-info'
-                    // },
-                ]
-            });
-            $('.toggle-vis').on( 'click', function () {
-        
-                // Get the column API object
-                var column = table.column( $(this).attr('data-column') );
-        
-                // Toggle the visibility
-                column.visible( ! column.visible() );
-            } );
-        }
-        if (tabla == 'tblLisOportunidades') {
-            // datatable de tabla Oportunidades
-            var table =  $('#tblListaOportunidades').DataTable({
-                "language": {
-                    "url": "extensions/datatables/Spanish.json"
-                },
-                responsive: "true",
-                dom: 'Blfrtip',
-                scrollCollapse: true,
-                scrollX: true,
-                scrollY: "400px",
-                buttons: [
-                    {
-                        extend:     'excelHtml5',
-                        text:       '<i class="fas fa-file-excel"></i>',
-                        titleattr:  'Exportar a Excel',
-                        className:  'btn btn-success mr-4 ml-3',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    },
-                    // {
-                    //     extend:     'pdfHtml5',
-                    //     text:       '<i class="bi bi-file-post"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-danger'
-                    // },
-                    // {
-                    //     extend:     'print',
-                    //     text:       '<i class="bi bi-printer"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-info'
-                    // },
-                ]
-            });
-            $('.toggle-vis').on( 'click', function () {
-        
-                // Get the column API object
-                var column = table.column( $(this).attr('data-column') );
-        
-                // Toggle the visibility
-                column.visible( ! column.visible() );
-            } );
-        }
-        if (tabla == 'tblLisOrganizaciones') {
-            // datatable de tabla Oportunidades
-            var table =  $('#tblListaOrganizaciones').DataTable({
-                "language": {
-                    "url": "extensions/datatables/Spanish.json"
-                },
-                responsive: "true",
-                dom: 'Blfrtip',
-                scrollCollapse: true,
-                scrollY: "400px",
-                buttons: [
-                    {
-                        extend:     'excelHtml5',
-                        text:       '<i class="fas fa-file-excel"></i>',
-                        titleattr:  'Exportar a Excel',
-                        className:  'btn btn-success mr-4 ml-3',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    },
-                    // {
-                    //     extend:     'pdfHtml5',
-                    //     text:       '<i class="bi bi-file-post"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-danger'
-                    // },
-                    // {
-                    //     extend:     'print',
-                    //     text:       '<i class="bi bi-printer"></i>',
-                    //     titleattr:  'Exportar a Excel',
-                    //     className:  'btn btn-info'
-                    // },
-                ]
-            });
-            $('.toggle-vis').on( 'click', function () {
-        
-                // Get the column API object
-                var column = table.column( $(this).attr('data-column') );
-        
-                // Toggle the visibility
-                column.visible( ! column.visible() );
-            } );
-        }
-    });
-}
 
 // sweetAlert
 function sweetAlertType(type,page, id = false) {

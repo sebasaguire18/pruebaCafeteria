@@ -28,8 +28,8 @@
 
     </div>
     <div class="g-reg-8 pdx-3">
-        <h4 class="mg-2">Lista de productos</h4>
-        <table class="tbl tbl-striped pdy-4" id="tblListaProductos">
+        <h4 class="mg-2 mgb-5">Lista de productos</h4>
+        <table class="tbl tbl-striped" id="tblListaProductos">
             <thead>
                 <tr>
                     <th>Nombre</th>

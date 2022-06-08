@@ -56,6 +56,7 @@
 
 body, p, .p, input, button, a{
     font-family: quicksand-Regular!important;
+    text-decoration: none!important;
 }
 
 h0,h1,h2,h3,h4,h5,h6,.title1,.title2,.title3,.title4,.title5,.title6{

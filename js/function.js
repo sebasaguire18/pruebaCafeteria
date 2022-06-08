@@ -80,25 +80,25 @@ function tblInit(tabla) {
                 responsive: "true",
                 scrollCollapse: true,
                 scrollX: true,
-                dom: 'Blfrtip',
+                dom: 'lfBrtip',
                 buttons: [
                     {
                         extend:     'excelHtml5',
-                        text:       '<i class="icon-file-excel"></i>',
+                        text:       '<span class="txt-white icon-file-excel"></span>',
                         titleattr:  'Exportar a Excel',
-                        className:  'btn btn-success'
+                        className:  'ruler-button_child bg-success'
                     },
                     {
                         extend:     'pdfHtml5',
-                        text:       '<i class="icon-file-pdf"></i>',
+                        text:       '<span class="txt-white icon-file-pdf"></span>',
                         titleattr:  'Exportar a Excel',
-                        className:  'btn btn-danger'
+                        className:  'ruler-button_child bg-danger'
                     },
                     {
                         extend:     'print',
-                        text:       '<i class="icon-printer"></i>',
+                        text:       '<span class="txt-white icon-printer"></span>',
                         titleattr:  'Exportar a Excel',
-                        className:  'btn btn-info'
+                        className:  'ruler-button_child bg-info'
                     },
                 ]
             });

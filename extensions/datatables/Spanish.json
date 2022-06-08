@@ -1,21 +1,21 @@
 
 
 {
-    "sProcessing":     "<span class='text-black'>Procesando...</span>",
-    "sLengthMenu":     "<p class='text-black' style='color:black;'>Mostrar _MENU_ registros </p>",
+    "sProcessing":     "<span class='txt-black'>Procesando...</span>",
+    "sLengthMenu":     "<p class='txt-black' style='color:black;'>Mostrar _MENU_ registros </p>",
     "sZeroRecords":    "No se encontraron resultados",
     "sEmptyTable":     "Ningún dato disponible en esta tabla",
-    "sInfo":           "<p class='text-black'>Mostrando del _START_ al _END_ de un total de _TOTAL_ filas </p>",
-    "sInfoEmpty":      "<span class='text-black'>Mostrando del 0 al 0 de un total de 0 </span>",
-    "sInfoFiltered":   "<span class='text-secondary pl-3'>(filtrado de un total de _MAX_ registros)</span>",
-    "sSearch":         "<span class='text-black'>Buscar:</span>",
+    "sInfo":           "<p class='txt-black'>Mostrando del _START_ al _END_ de un total de _TOTAL_ filas </p>",
+    "sInfoEmpty":      "<span class='txt-black'>Mostrando del 0 al 0 de un total de 0 </span>",
+    "sInfoFiltered":   "<span class='txt-secondary pdl-3'>(filtrado de un total de _MAX_ registros)</span>",
+    "sSearch":         "<span class='txt-black'>Buscar:</span>",
     "sInfoThousands":  ".",
-    "sLoadingRecords": "<p class='text-black'>Cargando...</p>",
+    "sLoadingRecords": "<p class='txt-black'>Cargando...</p>",
     "oPaginate": {
-        "sFirst":    "<i class='bi bi-chevron-bar-left'></i>",
-        "sLast":     "<i class='bi bi-chevron-bar-right'></i>",
-        "sNext":     "<i class='bi bi-chevron-right'></i>",
-        "sPrevious": "<i class='bi bi-chevron-left'></i>"
+        "sFirst":    "<i class='icon-circle-left ruler-link_child'></i>",
+        "sLast":     "<i class='icon-circle-right ruler-link_child'></i>",
+        "sNext":     "<i class='icon-circle-right ruler-link_child'></i>",
+        "sPrevious": "<i class='icon-circle-left ruler-link_child'></i>"
     },
     "oAria": {
         "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",

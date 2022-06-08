@@ -28,6 +28,7 @@ sí no tenemos inicada una sesión nos redirigirá a este archivo 'index.php'
 El archivo 'welcome.php' ubicado en la raiz de nuestro proyecto contiene y gestiona todo la aplicación.
 
 Por medio de funciones JS cargaran las 'pages' o vistas que deseamos, por defecto welcome. En esta misma veremos las dos consultas solicitadas en la prueba de el producto con mayor stock y el producto más vendido.
+Las consultas se encuentran en las lineas 74 y 89 del archivo 'function.php' ubicado en la carpeta 'php'.
 
 En la carpeta 'extensions' tenemos las librerías utilizadas para este proyecto tales como, SweetAlert, DataTables, Fuentes e Iconos de una plataforma llamada '**https://icomoon.io/**'.
 

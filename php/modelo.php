@@ -55,7 +55,7 @@ if($_SESSION['userID']){
         $productoConsulta = mysqli_fetch_array($consultarStock);
         $cantidadStockNuevo = $productoConsulta['prod_stock'] - $cantidadProdVender;
 
-        if ($cantidadStockNuevo > 0) {
+        if ($cantidadStockNuevo >= 0) {
             $editarNuevoStock = mysqli_query($conexion,"UPDATE productos SET prod_stock = $cantidadStockNuevo WHERE prod_id = '$productoAVender'");
             
             if ($editarNuevoStock) {

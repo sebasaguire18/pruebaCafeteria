@@ -13,7 +13,7 @@ Para el Back-end utilicé PHP nativo y estructural, para hacer todos los contact
 Para la Base de Datos Utilicé MySQL.
 
 El conjunto de lo antes mencionado lo he llamado EasyAll, tecnología que me proporciona una facilidad a la hora de programar y organizar las páginas que deseo emplear.
-Sumulando una aplicación hecha con Angular 2+, React JS o demás tipos de plataformas para realizar aplicaciones SPA, donde nunca se recarga la plataforma. Esta tecnología la he contruido juntando todos los conocimientos que he obtenido a lo largo de mi carrera como desarrollador web.
+Simulando una aplicación hecha con Angular 2+, React JS o demás tipos de plataformas para realizar aplicaciones SPA, donde nunca se recarga la plataforma. Esta tecnología la he contruido juntando todos los conocimientos que he obtenido a lo largo de mi carrera como desarrollador web.
 
 
 Para poder  ejecutar esta web de manera local, se debe de configurar el archivo para la conexion a la base de datos llamado 'conexion-bd.php' ubicado en la carpeta 'php'.
